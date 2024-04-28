@@ -12,7 +12,7 @@ class Program
         string letter;
         string sign = "";
         string endStatement = "";
-        int lastDigit = 7;
+        int lastDigit;
         
             Console.Write("Using integers, what is your grade percentage? ");
             classGrade = int.Parse(Console.ReadLine());     // I was struggling with the input, it kept changing on me usingf Console.Read(), used the current to get around the issue. 
