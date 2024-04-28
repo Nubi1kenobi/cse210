@@ -6,7 +6,7 @@ class Program
     static void Main(string[] args)
     {
         Console.Clear(); //clears the console for a fresher look
-        Console.WriteLine("Hello Prep2 World!");
+        Console.WriteLine("Hello Prep2 World!"); //just adding to push and commit again
         var classGrade = 0;
         
         string letter;
