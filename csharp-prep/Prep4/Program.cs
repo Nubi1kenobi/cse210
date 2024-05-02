@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 
+
 class Program
 {
     static void Main(string[] args)
     {
         List<int> integerList = new List<int>();
         int enteredNumber;
-
+        //int sumList = 0;
+        //int averageList;
+        //int largestNumber;
+        
         Console.Clear(); //clears the console for a fresher look
         Console.WriteLine("Hello Prep4 World!");
         
@@ -14,11 +18,15 @@ class Program
         Console.Write("Enter number: ");
         enteredNumber = int.Parse(Console.ReadLine());
 
-        do while (enteredNumber != 0)
+        while (enteredNumber != 0)
         {
             integerList.Add(enteredNumber);
             Console.Write("Enter number: ");
             enteredNumber = int.Parse(Console.ReadLine());
         }
+        
+        Console.WriteLine($"The sum is: {integerList.Sum()}");
+        Console.WriteLine($"The averge is: {integerList.Average()}");
+        Console.WriteLine($"The largest number is: {integerList.Max()}");
     }
 }
