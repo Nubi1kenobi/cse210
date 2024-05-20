@@ -1,6 +1,6 @@
 using System;
 /// <summary>
-/// note for later - this is not a tru object yet. I want to use a similar idea behind the journal program to create
+/// note for later - this is not a true object yet. I want to use this as a similar idea behind the journal program to create
 /// a real menu object I can use in any program - use deserialize like the journal. I just cannot spend anymore time on this 
 /// part - will need to be in two parts, A - menu options and B - menu outputs.
 /// </summary>
@@ -18,7 +18,7 @@ public class Menu
         }
     public static int MenuUserInput()
         { 
-            //variable declarations and initializations
+            // variable declarations and initializations
             bool _validInput = false;
             int _menuSelect;  
 
@@ -26,13 +26,15 @@ public class Menu
                 // this behaves differently if a non-integer is enetered from entering something out of range (<> a number). 
                 // To correct this to get an out of range interger to behave similarly to a string, add a do while loop in the 
                 // main program for the out of range config.
-            do 
+                
+            do  // This loop provides the non-integer part of the error checking. This is an attempt to exceed the core requirements.
                 {
                     _validInput = int.TryParse(Console.ReadLine(), out _menuSelect);
                     if (!_validInput) 
                         {
+                            Console.Clear();    // Above and beyond, makes it appear cleaner.
                             Console.WriteLine("");
-                            Console.WriteLine("ERROR 0001 - INVALID INPUT: Please select a number between 1 and 5.");
+                            Console.WriteLine("ERROR 0002 - INVALID INPUT: Please select a number between 1 and 5, in Menu.MenuUserInput()");
                             Console.WriteLine("");
                             MainMenu();
                         }
@@ -40,34 +42,43 @@ public class Menu
             return _menuSelect;
         }
         
-    public static void MenuSelect(int userInput)       
+    public static void MenuSelect(int userInput, Journal newJournal)       
         {
-            //variable declarations and initializations
+            // variable declarations and initializations
             int _menuSelect = userInput;
 
 
             if (_menuSelect == 1)
                 {
-                    Console.Clear();    //clears the console for a fresher look.
-                    Console.WriteLine($"You selected : {_menuSelect}");
+                    
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
+                    Entry newEntry = new Entry(); //  starts a new Entry when we want to write
+                    newEntry.Write();
+                    string serializedVersion = newEntry.Serialize();
+                    //Console.WriteLine(serializedVersion); // This is here for testing purposes.
+                    newEntry.Deserialize(serializedVersion);
+                    newEntry.Display();
+
+                    Console.ReadKey();  // Above and beyond, makes it appear cleaner.
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
             else if (_menuSelect == 2)
                 {
-                    Console.Clear();    //clears the console for a fresher look.
-                    Console.WriteLine($"You selected : {_menuSelect}");
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
+                    newJournal.Display();
                 }
 
             else if (_menuSelect == 3)
                 {
-                    Console.Clear();    //clears the console for a fresher look.
-                    Console.WriteLine($"You selected : {_menuSelect}");
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
+                    newJournal.Load();
                 }
 
             else if (_menuSelect == 4)
                 {
-                    Console.Clear();    //clears the console for a fresher look.
-                    Console.WriteLine($"You selected : {_menuSelect}");
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
+                    newJournal.Save();
                 }
         }
 }
