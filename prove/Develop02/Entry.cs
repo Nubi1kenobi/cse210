@@ -51,10 +51,17 @@ public class Entry
                     }
                 return _userPrompt;
             }
+            
+            /// <summary>
+            /// serializes the data so that it can be stored and saved into a file.
+            /// </summary>
+            /// <returns></returns>
             public string Serialize()
                 {
                     return $"{_now}-|-{_userPrompt}-|-{_userEntry}";
                 }
+
+                
             public void Deserialize(string journalEntry)
                 {
                     string[] segment = journalEntry.Split("-|-");
