@@ -1,4 +1,5 @@
 using System;
+
 /// <summary>
 /// note for later - this is not a true object yet. I want to use this as a similar idea behind the journal program to create
 /// a real menu object I can use in any program - use deserialize like the journal. I just cannot spend anymore time on this 
@@ -46,20 +47,12 @@ public class Menu
         {
             // variable declarations and initializations
             int _menuSelect = userInput;
-
-
             if (_menuSelect == 1)
                 {
-                    
+                    Entry newEntry = new Entry();   
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    Entry newEntry = new Entry(); //  starts a new Entry when we want to write
                     newEntry.Write();
-                    string serializedVersion = newEntry.Serialize();
-                    //Console.WriteLine(serializedVersion); // This is here for testing purposes.
-                    newEntry.Deserialize(serializedVersion);
-                    newEntry.Display();
-
-                    Console.ReadKey();  // Above and beyond, makes it appear cleaner.
+                    newJournal._entry.Add(newEntry);
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
@@ -67,18 +60,22 @@ public class Menu
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                     newJournal.Display();
+                    Console.ReadKey();    // Above and beyond, makes it appear cleaner.
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
             else if (_menuSelect == 3)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                     newJournal.Load();
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
             else if (_menuSelect == 4)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                     newJournal.Save();
+                    Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
         }
 }

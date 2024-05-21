@@ -6,14 +6,10 @@ using System;
             {
                 // variable declarations and initializations for static void Main(string[] args)
                 int userInput;
-                
                 // beginning of static void Main(string[] args) programming *****************************************************************
                 Console.Clear();    //clears the console for a fresher look.
                 Console.WriteLine("Hello Develop02 World!");
-                        
-                Journal newJournal = new Journal(); // starts a new Journal when the program starts up
-                
-        
+                Journal newJournal = new Journal(); 
                 do  // this loop provides the Out of Range error checking on the integers. This is an attempt to exceed the core requirements.
                     {
                         Menu.MainMenu();    //displays the main menu.
@@ -30,7 +26,7 @@ using System;
                 
                 //exiting the program when the menu loop ends
                 Console.Clear();    // Above and beyond, makes it appear cleaner.
-                Console.WriteLine("Have a nice day, goodbye.");
+                Console.WriteLine("Goodbye, Au revoir, Auf Wiedersehen, Yasou, L'hitraot, Namaste, Viszlát!, Vertu Saeill!, Atsiprasau, Zài jiàn, Namaste, Ha det bra, Khodaa haafez, Żegnaj, Adeus , Adiós, Chao, Dasvidaniya, Poka, Bài bài, Zàijiàn, Arrivederci, Ciao, Sayonara, Ja nee, Farvel, Kwaheri, Baadaye");
                 System.Environment.Exit(0);
                 // end of static void Main(string[] args) ***********************************************************************************
             }        

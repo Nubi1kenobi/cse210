@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
+
 public class Entry
     {
 
-        public string _now = DateTime.Now.ToString("yyyy/MM/dd - HH:mm:ss");
+        public string _dateTime = DateTime.Now.ToString("yyyy/MM/dd - HH:mm:ss");    //my DateTime format is this way because this is the way I prefer to see it on everything. I chose this.
         public string _userPrompt;
         public string _userEntry;
 
@@ -14,7 +12,6 @@ public class Entry
             _userPrompt = Prompts();
             Console.Write($"{_userPrompt}\n> ");
             _userEntry = Console.ReadLine();
-            // string _userCombined = _userPrompt + _userEntry;
             Console.Clear();
             return _userEntry;    
         }
@@ -58,30 +55,35 @@ public class Entry
             /// <returns></returns>
             public string Serialize()
                 {
-                    return $"{_now}-|-{_userPrompt}-|-{_userEntry}";
+                    return $"{_dateTime}-|-{_userPrompt}-|-{_userEntry}";
                 }
 
-                
+            /// <summary>
+            /// used to prepar text for an output (screen/console);
+            /// </summary>
+            /// <param name="journalEntry"></param>
             public void Deserialize(string journalEntry)
                 {
                     string[] segment = journalEntry.Split("-|-");
                     
-                    if (journalEntry.Length < 4)
+                    if (journalEntry.Length < 3)
                         {
                             Console.WriteLine("ERROR 0004 - Missing line segments, in Entry.Deserialize.");
                         }
                     else
                         {
-                            _now = segment[0];
+                            _dateTime = segment[0];
                             _userPrompt = segment[1];    
                             _userEntry = segment[2];
                         }
                 }
+
+                /// <summary>
+                /// this is used for displaying the contents to the console or output.
+                /// </summary>
                 public void Display()
                     {
-                        Console.WriteLine($"DateTime: {_now} - Prompt: {_userPrompt}\n{_userEntry}");
-                        Console.WriteLine("");
-                        Console.WriteLine("<Press any key to return to the Main Menu.>");    //Above and beyond, makes it appear cleaner.
+                        Console.WriteLine($"DateTime: {_dateTime} - Prompt: {_userPrompt}\n{_userEntry}");
                     }
 
 
