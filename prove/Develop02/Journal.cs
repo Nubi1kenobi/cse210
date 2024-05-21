@@ -5,14 +5,17 @@ public class Journal
     public List<Entry> _entry = new List<Entry>();
     //internal static object _entry;
 
-    public void Save()
+    public void SaveFile()
         {
             Console.WriteLine("Something Saving");
             Console.ReadKey();
         
         }
-    public void Load()
+    public void LoadFile()
         {
+            Console.WriteLine("Something Loading");
+            Console.WriteLine("Something Loading");
+            Console.WriteLine("Something Loading");
             Console.WriteLine("Something Loading");
             Console.ReadKey();
         }
@@ -24,7 +27,7 @@ public class Journal
             foreach (Entry journalEntry in _entry)
             {
             journalEntry.Display();
-            Console.WriteLine("");
+            Console.WriteLine("\n<Press any key to continue>"); //above and beyond, makes it cleaner.
             }
         }
 }

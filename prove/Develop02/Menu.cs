@@ -67,14 +67,16 @@ public class Menu
             else if (_menuSelect == 3)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    newJournal.Load();
+                    newJournal.LoadFile();
+                    Console.WriteLine("Something Loaded");
+                    Console.ReadKey();
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
             else if (_menuSelect == 4)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    newJournal.Save();
+                    newJournal.SaveFile();
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
         }
