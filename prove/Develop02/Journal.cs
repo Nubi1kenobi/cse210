@@ -3,19 +3,15 @@ public class Journal
 {
     public string _journalName = "Something Dumb";
     public List<Entry> _entry = new List<Entry>();
-    //internal static object _entry;
 
-    public void SaveFile()
+    public void Save()
         {
             Console.WriteLine("Something Saving");
             Console.ReadKey();
         
         }
-    public void LoadFile()
+    public void Load()
         {
-            Console.WriteLine("Something Loading");
-            Console.WriteLine("Something Loading");
-            Console.WriteLine("Something Loading");
             Console.WriteLine("Something Loading");
             Console.ReadKey();
         }
@@ -25,10 +21,10 @@ public class Journal
             Console.WriteLine("Entry List: ");
             
             foreach (Entry journalEntry in _entry)
-            {
-            journalEntry.Display();
-            Console.WriteLine("\n<Press any key to continue>"); //above and beyond, makes it cleaner.
-            }
+                {
+                    journalEntry.Display();
+                }
+            Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.
         }
 }
 

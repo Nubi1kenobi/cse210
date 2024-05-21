@@ -83,7 +83,7 @@ public class Entry
                 /// </summary>
                 public void Display()
                     {
-                        Console.WriteLine($"DateTime: {_dateTime} - Prompt: {_userPrompt}\n{_userEntry}");
+                        Console.WriteLine($"DateTime: {_dateTime} - Prompt: {_userPrompt}\n{_userEntry}\n");
                     }
 
 
