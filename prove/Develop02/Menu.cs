@@ -47,9 +47,10 @@ public class Menu
         {
             // variable declarations and initializations
             int _menuSelect = userInput;
+            Entry newEntry = new Entry(); 
             if (_menuSelect == 1)
                 {
-                    Entry newEntry = new Entry();   
+                    //Entry newEntry = new Entry();   
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                     newEntry.Write();
                     newJournal._entry.Add(newEntry);
@@ -74,7 +75,7 @@ public class Menu
             else if (_menuSelect == 4)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    newJournal.Save();
+                    newJournal.Save(newJournal, newEntry);
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
         }

@@ -10,6 +10,7 @@ using System;
                 Console.Clear();    //clears the console for a fresher look.
                 Console.WriteLine("Hello Develop02 World!");
                 Journal newJournal = new Journal(); 
+
                 do  // this loop provides the Out of Range error checking on the integers. This is an attempt to exceed the core requirements.
                     {
                         Menu.MainMenu();    //displays the main menu.
