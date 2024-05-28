@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 /// <summary>
 /// note for later - this is not a true object yet. I want to use this as a similar idea behind the journal program to create
@@ -53,8 +54,8 @@ public class Menu
                     //Entry newEntry = new Entry();   
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                     newEntry.Write();
-                    newJournal._entry.Add(newEntry);
-                    Console.Clear();    // Above and beyond, makes it appear cleaner.
+                    newJournal._journalEntry.Add(newEntry);
+                    //Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
             else if (_menuSelect == 2)
@@ -75,7 +76,7 @@ public class Menu
             else if (_menuSelect == 4)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    newJournal.Save(newJournal, newEntry);
+                    //newJournal.Save(newJournal, newEntry);
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
         }
