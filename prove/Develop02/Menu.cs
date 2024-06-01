@@ -7,6 +7,7 @@ using System.Diagnostics;
 /// part - will need to be in two parts, A - menu options and B - menu outputs.
 /// </summary>
 public class Menu
+
 {
     public static void MainMenu()       
         {                                
@@ -48,10 +49,10 @@ public class Menu
         {
             // variable declarations and initializations
             int _menuSelect = userInput;
-            Entry newEntry = new Entry(); 
+            //Entry newEntry = new Entry(); 
             if (_menuSelect == 1)
                 {
-                    //Entry newEntry = new Entry();   
+                    Entry newEntry = new Entry();   
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                     newEntry.Write();
                     newJournal._journalEntry.Add(newEntry);
@@ -68,15 +69,25 @@ public class Menu
 
             else if (_menuSelect == 3)
                 {
-                    Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    newJournal.Load();
+                    //Entry loadedEntries = new Entry(); 
+                    Entry newEntry = new Entry();   
+                    Console.Clear();
+                    //newJournal.Journal();    // Above and beyond, makes it appear cleaner.
+                    string[] _journalArray = newJournal.Load();
+                        for (int i = 0; i < (_journalArray.Length - 1); i++) 
+                            {
+                                Console.WriteLine($"<menuSelect> {i} - {_journalArray[i]}"); 
+                                newJournal._journalEntry.Add(newEntry);
+                            }
+                    Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.Console.ReadKey();
+                    Console.ReadKey();
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
 
             else if (_menuSelect == 4)
                 {
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
-                    //newJournal.Save(newJournal, newEntry);
+                    newJournal.Save();
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
         }

@@ -7,10 +7,12 @@ public class Entry
         private string _userPrompt;
         private string _userEntry;
         private string _combinedEntry;
-        private string _desrializedEntry;
+        private string _deserializedEntry;
+
+//
 
         //private methods
-        private static string Prompts() 
+        private string Prompts() 
             {
                 string _userPrompt;
                 var _randomizer = new Random();
@@ -90,7 +92,12 @@ public class Entry
             
             public void Display()
                 {
-                    _desrializedEntry = Deserialize(_combinedEntry);
-                    Console.WriteLine($"{_desrializedEntry}\n");
-                }        
+                    _deserializedEntry = Deserialize(_combinedEntry);
+                    Console.WriteLine($"{_deserializedEntry}\n");
+                } 
+
+            public string OutToFile()
+                {
+                    return _combinedEntry;
+                }       
     }
