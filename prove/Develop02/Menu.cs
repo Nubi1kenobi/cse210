@@ -72,7 +72,7 @@ public class Menu
                     //Entry loadedEntries = new Entry(); 
                     Entry newEntry = new Entry();   
                     Console.Clear();
-                    //newJournal.Journal();    // Above and beyond, makes it appear cleaner.
+                    //newJournal.Journal();    
                     string[] _journalArray = newJournal.Load();
                         for (int i = 0; i < (_journalArray.Length - 1); i++) 
                             {
