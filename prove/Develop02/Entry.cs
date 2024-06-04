@@ -47,13 +47,19 @@ public class Entry
             }
 
         //public methods
-        public string Write()
+        public string Write(Journal newJournal, Entry newEntry)
             {   
                 _userPrompt = Prompts();
                 Console.Write($"{_userPrompt}\n> ");
                 _userEntry = Console.ReadLine();
-                _combinedEntry = Serialize();
-                Console.Clear();
+                //Console.WriteLine("Test Point - Prompts Function");
+                //Console.ReadKey();
+                _combinedEntry = $"{_dateTime}-|-{_userPrompt}-|-{_userEntry}"; //manually serializing
+                //_combinedEntry = Serialize();
+                //Console.ReadKey();
+                //_combinedEntry = "test";
+                //newJournal._journalEntry.Add(newEntry);
+                //Console.Clear();
                 return _combinedEntry;
             }
 

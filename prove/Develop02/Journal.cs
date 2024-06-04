@@ -60,11 +60,6 @@ public class Journal
 
             return _loadedArrayEntries;
 
-
-            
-            
-
-
             /*
 foreach (string line in lines) 
             {
@@ -74,8 +69,8 @@ foreach (string line in lines)
             
 
                 
-            Console.ReadKey();
-            Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.
+            //Console.ReadKey();
+            //Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.
         }
     public void Display()
         {

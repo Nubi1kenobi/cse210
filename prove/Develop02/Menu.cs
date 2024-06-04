@@ -6,10 +6,11 @@ using System.Diagnostics;
 /// a real menu object I can use in any program - use deserialize like the journal. I just cannot spend anymore time on this 
 /// part - will need to be in two parts, A - menu options and B - menu outputs.
 /// </summary>
+
 public class Menu
 
 {
-    public static void MainMenu()       
+/*    public static void MainMenu()       //ommitting this class.
         {                                
             Console.WriteLine("Please select on of the following choices:");
             Console.WriteLine("1. Write");
@@ -91,4 +92,5 @@ public class Menu
                     Console.Clear();    // Above and beyond, makes it appear cleaner.
                 }
         }
+*/        
 }
