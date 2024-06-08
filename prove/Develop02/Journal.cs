@@ -52,7 +52,7 @@ public class Journal
         public void Load()
             {
                 Console.Clear();
-                Console.Write("Please type a filename for the journal you would like to load.\n> ");
+                Console.Write("Please type a filename for the journal you would like to load, without the extension.\n> ");
                _journalName = Console.ReadLine() + ".txt";
                
                 string[] fileLines = File.ReadAllLines(_journalName);              
