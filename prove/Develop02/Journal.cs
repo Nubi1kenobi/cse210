@@ -53,17 +53,19 @@ public class Journal
             {
                 Console.Clear();
                 Console.Write("Please type a filename for the journal you would like to load.\n> ");
-               _journalName = Console.ReadLine();
+               _journalName = Console.ReadLine() + ".txt";
                
-                string[] fileLines = File.ReadAllLines(_journalName);
+                string[] fileLines = File.ReadAllLines(_journalName);              
+                
                 foreach (string fileLine in fileLines) 
                     {
                         Entry newEntry = new Entry();
+                        newEntry.WriteTextFilePrompts(fileLine);
                         _journalEntry.Add(newEntry);
-                        newEntry.WriteTextFilePrompts();
                     } 
 
                 Console.Clear();    //above and beyond, makes it cleaner.
+                Console.WriteLine($"Back to Journal.Load() method.");  //above and beyond, makes it cleaner.
                 Console.WriteLine($"{_journalName} has been loaded.");  //above and beyond, makes it cleaner.
                 Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
                 Console.ReadKey();  //above and beyond, makes it cleaner.
@@ -84,7 +86,7 @@ public class Journal
                     }
                 
                 Console.CursorVisible = false;  //above and beyond, makes it cleaner.
-                Console.WriteLine($"{_journalName} has been displayed.");  //above and beyond, makes it cleaner.
+                Console.WriteLine($"The contents of {_journalName} have been displayed.");  //above and beyond, makes it cleaner.
                 Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
                 Console.ReadKey();  //above and beyond, makes it cleaner.
             }

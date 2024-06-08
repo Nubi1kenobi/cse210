@@ -38,7 +38,7 @@ public class Entry
 
 //public methods
         /// <summary>
-        /// calles for a prompt, then writes a new entry and serializes it;
+        /// calles for a prompt, then writes a new entry and serializes it.
         /// </summary>
         public void WriteUserPrompts()
             {
@@ -48,11 +48,12 @@ public class Entry
                 _userEntry = Console.ReadLine();
                 _combinedEntry = Serialize();
             }
-
-        public void WriteTextFilePrompts()
+        /// <summary>
+        /// takes the serialized line from the text file and loads it as a new entry.
+        /// </summary>
+        public void WriteTextFilePrompts(string combinedEntry)
             {
-                Console.Clear();    //above and beyond, makes it cleaner.
-                _combinedEntry = Serialize();
+                _combinedEntry = combinedEntry;
             }
         public string Serialize()
             {
@@ -68,7 +69,7 @@ public class Entry
                 
                 if (journalEntry.Length < 3)
                     {
-                        Console.WriteLine("ERROR 0004 - Missing line segments, in Entry.Deserialize.");
+                        Console.WriteLine("ERROR - Missing line segments, in Entry.Deserialize.");
                     }
                 else
                     {
