@@ -65,7 +65,6 @@ public class Journal
                     } 
 
                 Console.Clear();    //above and beyond, makes it cleaner.
-                Console.WriteLine($"Back to Journal.Load() method.");  //above and beyond, makes it cleaner.
                 Console.WriteLine($"{_journalName} has been loaded.");  //above and beyond, makes it cleaner.
                 Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
                 Console.ReadKey();  //above and beyond, makes it cleaner.
