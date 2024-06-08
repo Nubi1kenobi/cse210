@@ -2,71 +2,54 @@ using System;
 
 public class Entry
     {
-
+        //variable declarations
         private string _dateTime = DateTime.Now.ToString("yyyy/MM/dd - HH:mm:ss");    //my DateTime format is this way because this is the way I prefer to see it on everything. I chose this.
         private string _userPrompt;
         private string _userEntry;
         private string _combinedEntry;
         private string _deserializedEntry;
 
-//
-
         //private methods
-        private string Prompts() 
+
+        /// <summary>
+        /// randomizes an integer within a given range, then displays that prompt for the user;
+        /// </summary>
+        private static string Prompts() 
             {
-                string _userPrompt;
                 var _randomizer = new Random();
                 int _theRandomNumber = _randomizer.Next(1,6);
                 
-                if (_theRandomNumber == 1) 
-                    {
-                        _userPrompt = "Quick! What is the weather condition like right now?";
-                    }
-                else if (_theRandomNumber == 2) 
-                    {
-                        _userPrompt = "What thought has pre-occupyied your mind since your last entry?";
-                    }
-                else if (_theRandomNumber == 3) 
-                    {
-                        _userPrompt = "What are you planning for tomorrow?";
-                    }
-                else if (_theRandomNumber == 4) 
-                    {
-                        _userPrompt = "What was the last kind thing that you did?";
-                    }
-                else if (_theRandomNumber == 5) 
-                    {
-                        _userPrompt = "Tell me about one of your goals:";
-                    }
-                else
-                    {
-                        _userPrompt = $"ERROR 0002 - INVALID INT: The random number: {_theRandomNumber} is out of range, in Entry.Prompts()";  // Above and beyond, used to test Randomizer(), in case something come in out of range.
-                    }
+            switch (_theRandomNumber)
+                {
+                    case 1:
+                        return "Quick! What is the weather condition like right now?";
+                    case 2:
+                        return "What thought has preoccupied your mind since your last entry?";
+                    case 3:
+                        return "What are you planning for tomorrow?";
+                    case 4:
+                        return "What was the last kind thing that you did?";
+                    case 5:
+                        return "Tell me about one of your goals:";
+                    default:
+                        return $"ERROR - INVALID INT: The random number: {_theRandomNumber} is out of range, in Entry.Prompts()";
+                }
 
-                return _userPrompt;
             }
 
         //public methods
-        public string Write(Journal newJournal, Entry newEntry)
-            {   
+
+        /// <summary>
+        /// calles for a prompt, then writes a new entry and serializes it;
+        /// </summary>
+        public void Write()
+            {
+                Console.Clear();    //above and beyond, makes it cleaner.
                 _userPrompt = Prompts();
                 Console.Write($"{_userPrompt}\n> ");
                 _userEntry = Console.ReadLine();
-                //Console.WriteLine("Test Point - Prompts Function");
-                //Console.ReadKey();
-                _combinedEntry = $"{_dateTime}-|-{_userPrompt}-|-{_userEntry}"; //manually serializing
-                //_combinedEntry = Serialize();
-                //Console.ReadKey();
-                //_combinedEntry = "test";
-                //newJournal._journalEntry.Add(newEntry);
-                //Console.Clear();
-                return _combinedEntry;
+                _combinedEntry = Serialize();
             }
-
-        /// <summary>
-        /// serializes the data so that it can be stored and saved into a file.
-        /// </summary>
-        /// <returns></returns>
         public string Serialize()
             {
                 return $"{_dateTime}-|-{_userPrompt}-|-{_userEntry}";
