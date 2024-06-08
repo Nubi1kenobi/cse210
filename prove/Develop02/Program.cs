@@ -71,7 +71,7 @@ class Program
                     break;
                 case 5:
                     Console.Clear();
-                    Console.WriteLine("Goodbye!");
+                    Console.WriteLine("Goodbye, Au revoir, Auf Wiedersehen, Yasou, L'hitraot, Namaste, Viszlát!, Vertu Saeill!, Atsiprasau, Zài jiàn, Namaste, Ha det bra, Khodaa haafez, Żegnaj, Adeus , Adiós, Chao, Dasvidaniya, Poka, Bài bài, Zàijiàn, Arrivederci, Ciao, Sayonara, Ja nee, Farvel, Kwaheri, Baadaye");
                     System.Environment.Exit(0);
                     break;
             }
