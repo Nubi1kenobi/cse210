@@ -19,14 +19,8 @@ public class Journal
         public void Write()
             {
                 Entry newEntry = new Entry();
-                newEntry.Write(); // Prompt the user and get the entry
+                newEntry.WriteUserPrompts(); // Prompt the user and get the entry
                 _journalEntry.Add(newEntry);
-
-                Console.CursorVisible = false;  //above and beyond, makes it cleaner.
-                Console.Clear();    //above and beyond, makes it cleaner.
-                Console.WriteLine("Entry added.");  //above and beyond, makes it cleaner.
-                Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
-                Console.ReadKey();  //above and beyond, makes it cleaner.
             }
     
         /// <summary>
@@ -34,13 +28,14 @@ public class Journal
         /// </summary>
         public void Save()
             {
+                Console.Clear();    //above and beyond, makes it cleaner.
                 Console.Write("Please declare a filename to use for this journal (without the extension): ");
                 _journalName = Console.ReadLine() + ".txt";
                 using (StreamWriter _outputFile = new StreamWriter(_journalName, true))
                     {                     
                         foreach (Entry journalEntry in _journalEntry)
                             {
-                                _outputFile.WriteLine($"{journalEntry.OutToFile()}-||-");
+                                _outputFile.WriteLine(journalEntry.OutToFile());
                             }
                     }
 
@@ -49,37 +44,29 @@ public class Journal
                 Console.WriteLine($"{_journalName} has been saved.");  //above and beyond, makes it cleaner.
                 Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
                 Console.ReadKey();  //above and beyond, makes it cleaner.
-        
             }
         
         /// <summary>
         /// Load() method takes a text file and chuncks into a string and pieces the string into an array.
         /// </summary>
-        public string[] Load()
+        public void Load()
             {
-                Console.Write("Please type a filename for the journal you would like to load. ): ");
-                _journalName = Console.ReadLine() + ".txt";
-                // <reserved slot for error detection to see if the file really exists>
-                Console.WriteLine($"You are loading {_journalName}");
-                string _loadedStringFile = File.ReadAllText(_journalName); 
-                Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.Console.ReadKey();
-                Console.ReadKey();
-                //Console.WriteLine(_stringFile);
-                //Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.Console.ReadKey();
-                string[] _loadedArrayEntries = _loadedStringFile.Split("-||-");
-                Console.WriteLine($"loadedArrayEntries Length = :{_loadedArrayEntries.Length}"); //above and beyond, makes it cleaner.Console.ReadKey();
-                Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.Console.ReadKey();
-                Console.ReadKey();
-                Console.WriteLine("");
-                for (int i = 0; i < (_loadedArrayEntries.Length - 1); i++) 
+                Console.Clear();
+                Console.Write("Please type a filename for the journal you would like to load.\n> ");
+               _journalName = Console.ReadLine();
+               
+                string[] fileLines = File.ReadAllLines(_journalName);
+                foreach (string fileLine in fileLines) 
                     {
-                    Console.WriteLine($"<journal> {i} - {_loadedArrayEntries[i]}"); 
-                    }
-                Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.Console.ReadKey();
-                Console.ReadKey();
+                        Entry newEntry = new Entry();
+                        _journalEntry.Add(newEntry);
+                        newEntry.WriteTextFilePrompts();
+                    } 
 
-                return _loadedArrayEntries;
-
+                Console.Clear();    //above and beyond, makes it cleaner.
+                Console.WriteLine($"{_journalName} has been loaded.");  //above and beyond, makes it cleaner.
+                Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
+                Console.ReadKey();  //above and beyond, makes it cleaner.
             }
 
         /// <summary>
@@ -87,8 +74,7 @@ public class Journal
         /// </summary>
         public void Display()
             {
-                
-                Console.WriteLine($"Journal Name: {_journalName}\n");
+                Console.Clear();    //above and beyond, makes it cleaner.
                 Console.WriteLine("Entry List: ");
                 
                 
@@ -97,7 +83,10 @@ public class Journal
                         journalEntry.Display();
                     }
                 
-                Console.WriteLine("\n<Press Any Key to Continue>"); //above and beyond, makes it cleaner.
+                Console.CursorVisible = false;  //above and beyond, makes it cleaner.
+                Console.WriteLine($"{_journalName} has been displayed.");  //above and beyond, makes it cleaner.
+                Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
+                Console.ReadKey();  //above and beyond, makes it cleaner.
             }
 
 

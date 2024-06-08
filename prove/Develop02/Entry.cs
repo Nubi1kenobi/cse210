@@ -9,8 +9,7 @@ public class Entry
         private string _combinedEntry;
         private string _deserializedEntry;
 
-        //private methods
-
+//private methods
         /// <summary>
         /// randomizes an integer within a given range, then displays that prompt for the user;
         /// </summary>
@@ -37,17 +36,22 @@ public class Entry
 
             }
 
-        //public methods
-
+//public methods
         /// <summary>
         /// calles for a prompt, then writes a new entry and serializes it;
         /// </summary>
-        public void Write()
+        public void WriteUserPrompts()
             {
                 Console.Clear();    //above and beyond, makes it cleaner.
                 _userPrompt = Prompts();
                 Console.Write($"{_userPrompt}\n> ");
                 _userEntry = Console.ReadLine();
+                _combinedEntry = Serialize();
+            }
+
+        public void WriteTextFilePrompts()
+            {
+                Console.Clear();    //above and beyond, makes it cleaner.
                 _combinedEntry = Serialize();
             }
         public string Serialize()

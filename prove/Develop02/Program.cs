@@ -23,7 +23,7 @@ class Program
                         {
                             Console.CursorVisible = true;   //Above and beyond, makes it appear cleaner. Brings the curser back.
                             Console.Clear();
-                            Console.WriteLine("Please select on of the following choices:");
+                            Console.WriteLine("Please select one of the following choices:");
                             Console.WriteLine("1. Write");
                             Console.WriteLine("2. Display");
                             Console.WriteLine("3. Load");
