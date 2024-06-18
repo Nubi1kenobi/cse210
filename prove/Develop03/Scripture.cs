@@ -4,14 +4,30 @@ public class Scripture
 {
 //object variables***********************************
     private string _scripture;
-    private string _updatedScripture;
     private string[] _scriptureWords;
+    private List<Word> _scriptureWordList;
 
 //contructors**************************************
 public Scripture(string scripture)
 {
     _scripture = scripture;
     _scriptureWords = _scripture.Split(" ");
+    
+    foreach (string wordText in _scriptureWords)
+    {
+        Word word = new Word();
+        _scriptureWordList.Add(word);
+    }
+    
+    for (int i = 0; i < _scriptureWordList.Count; i++)
+    {
+        if (_scriptureWordList[i].GetStatus())
+        {
+            _scriptureWords[i] = "*****";
+        }
+    }
+    
+    _scripture = string.Join(" ", _scriptureWords);
 }    
 
 //methods/Getters/Setters**************************************
@@ -32,9 +48,10 @@ public Scripture(string scripture)
             _scripture = scripture;
         }
     
-    public void CountArray()
+    public int GetWordCount()
     {
-        Console.WriteLine($"There are {_scriptureWords.Length} words stored in the array");
+        //Console.WriteLine($"There are {_scriptureWords.Length} words stored in the array");
+        return _scriptureWords.Length;
     }
 
 //methods******************************************************

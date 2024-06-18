@@ -9,6 +9,7 @@ public class Word
 
     //methods**************************************************
 
+    public string Text { get; }
     public void SetHidden()
         {
             _isHidden = true;

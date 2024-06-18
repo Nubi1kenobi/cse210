@@ -11,24 +11,23 @@ class Program
             //string mainReference = "Proverbs 3:5-6";
             Reference newReference = new Reference("Proverbs", "3", "5", "6");
             Scripture newScripture = new Scripture(mainScripture);
-               
+            int loopCount = newScripture.GetWordCount();   
 
-            //do
-            foreach ( )
+            do
                 {
+                    loopCount--;
                     Console.Clear();
-                    
                     Console.WriteLine($"{newReference.GetReference()} {newScripture.GetScripture()}\n\nPress enter to continue or type 'quit' to finish:");
-                    newScripture.CountArray();
+                    //Console.WriteLine($"{newReference.GetReference()} {newScripture.GetScripture()}\n\nPress enter to continue or type 'quit' to finish:");
                     userInput = Console.ReadLine();
                     inputValidation = handleInput(userInput);
-                    if (inputValidation == true) { break; }
+                    if (inputValidation == true || loopCount < 0) { break; }
 
 
                     //DebugUtility.Debug();
 
                 }
-            //while (!inputValidation);
+            while (!inputValidation);
         }
 
         static bool handleInput(string userInput)
