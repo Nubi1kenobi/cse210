@@ -5,7 +5,7 @@ public class Scripture
 //object variables***********************************
     private string _scripture;
     private string[] _scriptureWords;
-    private List<Word> _scriptureWordList;
+    private List<Word> _scriptureWordList = new List<Word>();
 
 //contructors**************************************
 public Scripture(string scripture)
@@ -19,11 +19,20 @@ public Scripture(string scripture)
         _scriptureWordList.Add(word);
     }
     
+    // _scriptureWordList[0].SetHidden();
+    // _scriptureWordList[1].SetHidden();
+    // _scriptureWordList[2].SetHidden();
+    // _scriptureWordList[3].SetHidden();
+    // _scriptureWordList[4].SetHidden();
+    // _scriptureWordList[5].SetHidden();
+    // _scriptureWordList[6].SetHidden();
+    // _scriptureWordList[7].SetHidden();
+
     for (int i = 0; i < _scriptureWordList.Count; i++)
     {
         if (_scriptureWordList[i].GetStatus())
         {
-            _scriptureWords[i] = "*****";
+            _scriptureWords[i] = "".PadLeft(_scriptureWords[i].Length, '_');
         }
     }
     
