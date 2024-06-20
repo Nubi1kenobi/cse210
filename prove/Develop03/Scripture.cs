@@ -7,38 +7,12 @@ public class Scripture
     private string[] _scriptureWords;
     private List<Word> _scriptureWordList = new List<Word>();
 
+
 //contructors**************************************
 public Scripture(string scripture)
 {
     _scripture = scripture;
     _scriptureWords = _scripture.Split(" ");
-    
-    foreach (string wordText in _scriptureWords)
-    {
-        Word word = new Word();
-        _scriptureWordList.Add(word);
-    }
- 
-    // _scriptureWordList[0].SetHidden();
-    // _scriptureWordList[1].SetHidden();
-    // _scriptureWordList[2].SetHidden();
-    // _scriptureWordList[3].SetHidden();
-    // _scriptureWordList[4].SetHidden();
-    // _scriptureWordList[5].SetHidden();
-    // _scriptureWordList[6].SetHidden();
-    _scriptureWordList[elRandomo()].SetHidden();
-
-
-
-    for (int i = 0; i < _scriptureWordList.Count; i++)
-    {
-        if (_scriptureWordList[i].GetStatus())
-        {
-            _scriptureWords[i] = "".PadLeft(_scriptureWords[i].Length, '_');
-        }
-    }
-    
-    _scripture = string.Join(" ", _scriptureWords);
 }    
 
 //methods/Getters/Setters**************************************
@@ -47,10 +21,10 @@ public Scripture(string scripture)
             return _scripture; 
         }
    
-    private string[] GetScriptureWords()
-    {
-        return _scriptureWords;
-    }
+    // private string[] GetScriptureWords()
+    // {
+    //     return _scriptureWords;
+    // }
 
     // private void SetScripture(string scripture) 
     //     { 
@@ -63,14 +37,38 @@ public Scripture(string scripture)
         return _scriptureWords.Length;
     }
 
-    private int elRandomo()
+    public string GetUpdatedScripture()
+        {
+            foreach (string wordText in _scriptureWords)
+                {
+                    Word word = new Word();
+                    _scriptureWordList.Add(word);
+                }
+    
+            // _scriptureWordList[6].SetHidden();
+            _scriptureWordList[ElRandomo()].SetHidden();
+
+            for (int i = 0; i < _scriptureWordList.Count; i++)
+            {
+                if (_scriptureWordList[i].GetStatus())
+                {
+                    _scriptureWords[i] = "".PadLeft(_scriptureWords[i].Length, '_');
+                }
+            }
+            
+            _scripture = string.Join(" ", _scriptureWords);
+            return _scripture;
+        }
+ 
+    private int ElRandomo()
     {
         bool isValid = false;
         int _theRandomNumber;
+
         var _randomizer = new Random();
         do                                                  
             {
-                _theRandomNumber = _randomizer.Next(1,_scriptureWordList.Count);
+                _theRandomNumber = _randomizer.Next(0,GetWordCount() - 1);
                 if (_scriptureWordList[_theRandomNumber].GetStatus() == true) // checks for hidden state
                     {   
                         _theRandomNumber = _randomizer.Next(1,_scriptureWordList.Count);
