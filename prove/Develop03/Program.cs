@@ -16,18 +16,25 @@ class Program
             do
                 {
                     loopCount--;
+                    Thread.Sleep(250); //0.25s delay
                     Console.Clear();
                     Console.WriteLine($"{newReference.GetReference()} {newScripture.GetScripture()}\n\nPress enter to continue or type 'quit' to finish:");
                     //Console.WriteLine($"{newReference.GetReference()} {newScripture.GetScripture()}\n\nPress enter to continue or type 'quit' to finish:");
                     userInput = Console.ReadLine();
                     inputValidation = handleInput(userInput);
                     if (inputValidation == true || loopCount < 0) { break; }
-
+                    newScripture = new Scripture(mainScripture);
 
                     //DebugUtility.Debug();
 
                 }
             while (!inputValidation);
+            Console.Clear();
+            Console.WriteLine("Goodbye, Au revoir, Auf Wiedersehen, Yasou, L'hitraot, Namaste, Viszlát!, Vertu Saeill!, Atsiprasau, Zài jiàn, Namaste, Ha det bra, Khodaa haafez, Żegnaj, Adeus , Adiós, Chao, Dasvidaniya, Poka, Bài bài, Zàijiàn, Arrivederci, Ciao, Sayonara, Ja nee, Farvel, Kwaheri, Baadaye");
+            for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("");
+                }
         }
 
         static bool handleInput(string userInput)

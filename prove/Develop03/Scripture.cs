@@ -18,7 +18,7 @@ public Scripture(string scripture)
         Word word = new Word();
         _scriptureWordList.Add(word);
     }
-    
+ 
     // _scriptureWordList[0].SetHidden();
     // _scriptureWordList[1].SetHidden();
     // _scriptureWordList[2].SetHidden();
@@ -26,7 +26,9 @@ public Scripture(string scripture)
     // _scriptureWordList[4].SetHidden();
     // _scriptureWordList[5].SetHidden();
     // _scriptureWordList[6].SetHidden();
-    // _scriptureWordList[7].SetHidden();
+    _scriptureWordList[elRandomo()].SetHidden();
+
+
 
     for (int i = 0; i < _scriptureWordList.Count; i++)
     {
@@ -47,15 +49,13 @@ public Scripture(string scripture)
    
     private string[] GetScriptureWords()
     {
-        //_scriptureWords = _scripture.Split(" ");
-        //add logic to hide words
         return _scriptureWords;
     }
 
-    public void SetScripture(string scripture) 
-        { 
-            _scripture = scripture;
-        }
+    // private void SetScripture(string scripture) 
+    //     { 
+    //         _scripture = scripture;
+    //     }
     
     public int GetWordCount()
     {
@@ -63,7 +63,22 @@ public Scripture(string scripture)
         return _scriptureWords.Length;
     }
 
-//methods******************************************************
- 
+    private int elRandomo()
+    {
+        bool isValid = false;
+        int _theRandomNumber;
+        var _randomizer = new Random();
+        do                                                  
+            {
+                _theRandomNumber = _randomizer.Next(1,_scriptureWordList.Count);
+                if (_scriptureWordList[_theRandomNumber].GetStatus() == true) // checks for hidden state
+                    {   
+                        _theRandomNumber = _randomizer.Next(1,_scriptureWordList.Count);
+                    }
+                    else isValid = true;
+            }
+        while (!isValid);
+        return _theRandomNumber;
+    }
 
 }
