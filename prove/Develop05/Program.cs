@@ -9,15 +9,17 @@ class Program
     }
     static public void ProgramRun()
         {
+            
+            Console.Clear();
             do
                 {
-                    Console.Clear();
-                    MainMenu mainMenu = new MainMenu();       
+                    Menu_Main mainMenu = new Menu_Main();
                     mainMenu.Display();
                     Console.Clear();
-                    Console.WriteLine(mainMenu.GetMenuSelection());
-                    Console.ReadKey();
+                    //Console.WriteLine(mainMenu.GetMenuSelection()); // this is temporary for debugging purposes
+                    DebugUtility.Debug(mainMenu.GetMenuSelection());
                 } while (true);
+            
         }
 
 }

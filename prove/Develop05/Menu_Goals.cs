@@ -1,7 +1,7 @@
 using System;
 using System.Reflection.Metadata.Ecma335;
 
-public class MainMenu
+public class Menu_Goals
 {
     private int userInput = 0;
     private string menuOutput = "";
@@ -17,39 +17,25 @@ public class MainMenu
         switch (userInput)
         {
             case 1:
-                menuOutput = "Create New Goal Menu";
+                menuOutput = "Simple Goal Created";
                 break;                
             case 2:
-                menuOutput = "List Goals";
+                menuOutput = "Eternal Goal Created";
                 break;                
             case 3:
-                menuOutput = "Save Goals";
-                break;                 
-            case 4:
-                menuOutput = "Load Goals";
+                menuOutput = "Checklist Goal Created";
                 break;                
-            case 5:
-                menuOutput = "Record Event";
-                break;
-            case 6:
-                Console.Clear();
-                Console.WriteLine("Goodbye, Au revoir, Auf Wiedersehen, Yasou, L'hitraot, Namaste, Viszlát!, Vertu Saeill!, Atsiprasau, Zài jiàn, Namaste, Ha det bra, Khodaa haafez, Żegnaj, Adeus , Adiós, Chao, Dasvidaniya, Poka, Bài bài, Zàijiàn, Arrivederci, Ciao, Sayonara, Ja nee, Farvel, Kwaheri, Baadaye");
-                Environment.Exit(0);
-                break;
         }
         return menuOutput;
     }
 
     private void DisplayMenu()
         {
-            Console.WriteLine("MenuCommand Option:");
-            Console.WriteLine("1. Create New Goal");
-            Console.WriteLine("2. List Goals");
-            Console.WriteLine("3. Save Goals");
-            Console.WriteLine("4. Load Goals");
-            Console.WriteLine("5. Record Event");
-            Console.WriteLine("6. Quit");
-            Console.Write("Select a choice from the menu: ");
+            Console.WriteLine("The types of goals are:");
+            Console.WriteLine("1. Simple Goal");
+            Console.WriteLine("2. Eternal Goal");
+            Console.WriteLine("3. Checklist Goal");
+            Console.Write("Which type of goal would you like to create? ");
         }
 
     public string GetMenuSelection() 
@@ -76,7 +62,7 @@ public class MainMenu
                             continue; // Restart the loop to prompt for input again
                         }
                     // Check if input is in range
-                    if (userInput < 1 || userInput > 6)
+                    if (userInput < 1 || userInput > 3)
                         {
                             Console.CursorVisible = false; // Makes console appearance cleaner.
                             Console.Clear(); // Clears the console for a fresher look.
