@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class Menu_Main
     {
+        private string[] goodByeStuff = {"Goodbye, ", "Au revoir, ", "Auf Wiedersehen, ", "Yasou, ", "L'hitraot,\n", "Namaste, ", "Viszlát!, ", "Vertu Saeill!, ", "Atsiprasau, ", "Zài jiàn,\n", "Ha det bra, ", "Khodaa haafez, ", "Żegnaj, ", "Adeus, ", "Adiós, ", "Chao,\n", "Dasvidaniya, ", "Poka, ", "Bài bài, ", "Zàijiàn, ", "Arrivederci, ", "Ciao,\n", "Sayonara, ", "Ja nee, ", "Farvel, ", "Kwaheri, ", "Baadaye\n\n"};
         private List<string> menuOptions = new List<string>
             {
                 "Create New Goal",
@@ -13,36 +15,40 @@ public class Menu_Main
                 "Quit"
             };
 
-        public void Display()
+        public void Display(string userName)
             {
+                string _userName = userName;  
                 while (true)
                     {
-                        DisplayMenu();
-                        int userInput = InputHandler();
-                        if (MenuFunctions(userInput))
+                        Console.Clear();
+                        DisplayMenu(_userName);
+                        int userInput = InputHandler(_userName);
+                        if (MenuFunctions(userInput, _userName))
                             break;
                     }
             }
 
-        private void DisplayMenu()
+        private void DisplayMenu(string username)
             {
+                string _userName = username;
                 Console.Clear();
                 Console.WriteLine("MenuCommand Option:");
                 for (int i = 0; i < menuOptions.Count; i++)
                     {
                         Console.WriteLine($"{i + 1}. {menuOptions[i]}");
                     }
-                Console.Write("Select a choice from the menu: ");
+                Console.Write($"{_userName}, please select a choice from the menu: ");
             }
 
-        private int InputHandler()
+        private int InputHandler(string userName)
             {
+                string _username = userName;  
                 while (true)
                     {
                         if (int.TryParse(Console.ReadLine(), out int userInput) && userInput >= 1 && userInput <= menuOptions.Count)
                             return userInput;
                         InvalidInputMessage();
-                        DisplayMenu();
+                        DisplayMenu(_username);
                     }
             }
 
@@ -54,14 +60,15 @@ public class Menu_Main
                 Console.ReadKey();
             }
 
-        private bool MenuFunctions(int userInput)
+        private bool MenuFunctions(int userInput, string userName)
             {
+                string _userName = userName;
                 switch (userInput)
                     {
                         case 1:
                             Console.Clear();
                             Menu_Goals goalsMenu = new Menu_Goals();
-                            goalsMenu.Display();
+                            goalsMenu.Display(userName);
                             break;
                         case 2:
                             Console.Clear();
@@ -80,9 +87,8 @@ public class Menu_Main
                             DebugUtility.Debug("Recorded an Event");
                             break;
                         case 6:
-                            Console.Clear();
-                            Console.WriteLine("Goodbye, Au revoir, Auf Wiedersehen, Yasou, L'hitraot, Namaste, Viszlát!, Vertu Saeill!, Atsiprasau, Zài jiàn, Namaste, Ha det bra, Khodaa haafez, Żegnaj, Adeus , Adiós, Chao, Dasvidaniya, Poka, Bài bài, Zàijiàn, Arrivederci, Ciao, Sayonara, Ja nee, Farvel, Kwaheri, Baadaye");
-                            Environment.Exit(0);
+                            GoodByeAnimation goodBye = new GoodByeAnimation(350, 100, 1, goodByeStuff);
+                            goodBye.Animate();
                             return true;
                     }
                 return false;

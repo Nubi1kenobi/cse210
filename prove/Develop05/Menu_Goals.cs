@@ -10,37 +10,40 @@ public class Menu_Goals
                 "Checklist Goal",
             };
 
-        public void Display()
+        public void Display(string userName)
             {
+                string _userName = userName;  
                 while (true)
                     {
-                        DisplayMenu();
-                        int userInput = InputHandler();
+                        DisplayMenu(_userName);
+                        int userInput = InputHandler(_userName);
                         if (MenuFunctions(userInput))
                             break;
                     }
             }
 
-        private void DisplayMenu()
+        private void DisplayMenu(string userName)
             {
+                string _username = userName;  
                 Console.Clear();
                 Console.WriteLine("The types of goals are:");
                 for (int i = 0; i < menuOptions.Count; i++)
                     {
                         Console.WriteLine($"{i + 1}. {menuOptions[i]}");
                     }
-                Console.Write("Which type of goal would you like to create? ");
+                Console.Write($"{userName}, which type of goal would you like to create? ");
             }
 
-        private int InputHandler()
+        private int InputHandler(string userName)
             {
+                string _userName = userName;  
                 while (true)
                     {
                         if (int.TryParse(Console.ReadLine(), out int userInput) && userInput >= 1 && userInput <= menuOptions.Count)
                             return userInput;
 
                         InvalidInputMessage();
-                        DisplayMenu();
+                        DisplayMenu(_userName);
                     }
             }
 
