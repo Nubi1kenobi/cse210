@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -7,14 +8,26 @@ class Program
 
     static void Main(string[] args)
     {
-        int delay = 1000;
-        int fade = 50;
-        int count = 500;
+        int delay = 100;
+        int fade = 10;
+        int count = 10;
         string[] arrayOfStrings = {"\\", "|", "/", "-"};
         Console.WriteLine("Hello Sandbox World!");
         Animation countDown = new Animation(delay, fade, count, arrayOfStrings);
-        Console.Clear();
-        countDown.Animate();
-
+        // countDown.Animate();
+        ProgramRun();        
     }
+    static public void ProgramRun()
+        {
+            do
+                {
+                    Console.Clear();
+                    MainMenu mainMenu = new MainMenu();       
+                    mainMenu.Display();
+                    Console.Clear();
+                    Console.WriteLine(mainMenu.GetMenuSelection());
+                    Console.ReadKey();
+                } while (true);
+        }
+
 }
