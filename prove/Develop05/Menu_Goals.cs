@@ -1,78 +1,76 @@
 using System;
-using System.Reflection.Metadata.Ecma335;
+using System.Collections.Generic;
 
 public class Menu_Goals
-{
-    private int userInput = 0;
-    private string menuOutput = "";
-    private bool validInput = false;
-    private bool intInRange = false;
-
-    public string Display()
     {
-        DisplayMenu(); // Display the menu options
-        userInput = InputHandler();
+        private List<string> menuOptions = new List<string>
+            {
+                "Simple Goal",
+                "Eternal Goal",
+                "Checklist Goal",
+            };
 
-        // Process user input
-        switch (userInput)
-        {
-            case 1:
-                menuOutput = "Simple Goal Created";
-                break;                
-            case 2:
-                menuOutput = "Eternal Goal Created";
-                break;                
-            case 3:
-                menuOutput = "Checklist Goal Created";
-                break;                
-        }
-        return menuOutput;
+        public void Display()
+            {
+                while (true)
+                    {
+                        DisplayMenu();
+                        int userInput = InputHandler();
+                        if (MenuFunctions(userInput))
+                            break;
+                    }
+            }
+
+        private void DisplayMenu()
+            {
+                Console.Clear();
+                Console.WriteLine("The types of goals are:");
+                for (int i = 0; i < menuOptions.Count; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {menuOptions[i]}");
+                    }
+                Console.Write("Which type of goal would you like to create? ");
+            }
+
+        private int InputHandler()
+            {
+                while (true)
+                    {
+                        if (int.TryParse(Console.ReadLine(), out int userInput) && userInput >= 1 && userInput <= menuOptions.Count)
+                            return userInput;
+
+                        InvalidInputMessage();
+                        DisplayMenu();
+                    }
+            }
+
+        private void InvalidInputMessage()
+            {
+                Console.Clear();
+                Console.WriteLine($"Invalid input. Please enter an integer between 1 and {menuOptions.Count}.");
+                Console.WriteLine("<Press Any Key>");
+                Console.ReadKey();
+            }
+
+        private bool MenuFunctions(int userInput)
+            {
+                switch (userInput)
+                    {
+                        case 1:
+                            Console.Clear();
+                            DebugUtility.Debug("Simple Goal Created");
+                            break;                
+                        case 2:
+                            Console.Clear();
+                            DebugUtility.Debug("Eternal Goal Created");
+                            break;                
+                        case 3:
+                            Console.Clear();
+                            DebugUtility.Debug("Checklist Goal Created");
+                            break;
+                        default:
+                            return false; // Return false to indicate not quitting to Menu_Main
+                    }
+                return true; // Return true to indicate returning to Menu_Main
+            }
     }
-
-    private void DisplayMenu()
-        {
-            Console.WriteLine("The types of goals are:");
-            Console.WriteLine("1. Simple Goal");
-            Console.WriteLine("2. Eternal Goal");
-            Console.WriteLine("3. Checklist Goal");
-            Console.Write("Which type of goal would you like to create? ");
-        }
-
-    public string GetMenuSelection() 
-        {
-            return menuOutput;
-        }
-    
-    private int InputHandler()
-        {
-            do
-                {
-                    Console.Clear(); // Clears the console for a fresher look.
-                    DisplayMenu(); // Display the menu options
-                    // Attempt to read and parse user input
-                    string inputString = Console.ReadLine();
-                    validInput = int.TryParse(inputString, out userInput);
-                    if (!validInput)
-                        {
-                            Console.CursorVisible = false; // Makes console appearance cleaner.
-                            Console.Clear(); // Clears the console for a fresher look.
-                            Console.WriteLine("The input is not an integer. Please enter a valid integer between 1 and 6.");
-                            Console.WriteLine("<Press Any Key>");
-                            Console.ReadKey();
-                            continue; // Restart the loop to prompt for input again
-                        }
-                    // Check if input is in range
-                    if (userInput < 1 || userInput > 3)
-                        {
-                            Console.CursorVisible = false; // Makes console appearance cleaner.
-                            Console.Clear(); // Clears the console for a fresher look.
-                            Console.WriteLine("The input integer is out of range. Please select an integer between 1 and 6.");
-                            Console.WriteLine("<Press Any Key>");
-                            Console.ReadKey();
-                            continue; // Restart the loop to prompt for input again
-                        }
-                    intInRange = true; // Set flag to exit the loop
-                } while (!intInRange);
-            return userInput; // Return valid user input
-        }
-}
