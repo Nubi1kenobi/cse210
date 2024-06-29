@@ -16,7 +16,7 @@ public class Menu_Goals
                     {
                         DisplayMenu(_userName);
                         int userInput = InputHandler(_userName);
-                        if (MenuFunctions(userInput))
+                        if (MenuFunctions(userInput, _userName))
                             break;
                     }
             }
@@ -54,13 +54,18 @@ public class Menu_Goals
                 Console.ReadKey();
             }
 
-        private bool MenuFunctions(int userInput)
+        private bool MenuFunctions(int userInput, string userName)
             {
+                string _userName = userName;
                 switch (userInput)
                     {
                         case 1:
                             Console.Clear();
-                            DebugUtility.Debug("Simple Goal Created");
+                            //DebugUtility.Debug("Simple Goal Created");
+                            Goal simpleGoal = new Goal();
+                            string newSimpleGoal = simpleGoal.SetGoal(_userName);
+                            Console.Clear();
+                            DebugUtility.Debug(newSimpleGoal);
                             break;                
                         case 2:
                             Console.Clear();

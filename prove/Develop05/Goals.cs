@@ -23,11 +23,19 @@ public class Goal
                 return _serializedOutput;
             }
         public string SetGoal(string userName)
+        //public void SetGoal(string userName)
             {
                 string _userName = userName;
+                Console.Clear();
+                Console.Write($"{userName}, what is the name of your goal? ");
                 _goalName = Console.ReadLine();
+                Console.Clear();
+                Console.Write($"{userName}, what is a short description of your goal? ");
                 _goalDescription = Console.ReadLine();
+                Console.Clear();
+                Console.Write($"{userName}, what is the amount of points associated with this goal? ");
                 _goalValue = InputHandler();
+                //_serializedOutput = Serialize(_userName, _goalName, _goalDescription, _goalValue, _isComplete, _isPermanant);
                 return Serialize(_userName, _goalName, _goalDescription, _goalValue, _isComplete, _isPermanant);
             }
         private string Serialize(string userName, string goalName, string goalDescription, int goalValue, bool isComplete, bool isPermanant)
