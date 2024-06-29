@@ -1,15 +1,12 @@
 using System;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
 
 class Program
     {       
         static void Main(string[] args)
             {
-                string userName = "";
                 Console.WriteLine("Hello Develop05 World!");   
                 RunWelcome();
-                Login(userName);
+                string userName = Login();
                 RunProgram(userName);        
             }
         
@@ -24,23 +21,23 @@ class Program
                     }
             }
         
-        static public void Login(string userName)
+        static public string Login()
             {
-                string _userName = userName;
-                bool acceptedUsername = false;
-                while (!acceptedUsername)
+                
+
+                while (true)
                     {
                         Console.Clear();
                         Console.WriteLine("Welcome to your Eternal Goals!!!!!");
                         Console.Write("Please Enter your username: ");
-                        userName = Console.ReadLine();
-                        acceptedUsername = InputHandler(_userName); // Check if input is valid
-                        if (!acceptedUsername)
+                        string userName = Console.ReadLine();
+                        if (InputHandler(userName))
                             {
-                                InvalidInputMessage();
+                                return userName;
                             }
+                        InvalidInputMessage(userName);
                     }
-            }
+            }  
         
         static public void RunWelcome()
             {
@@ -52,20 +49,14 @@ class Program
         
         static private bool InputHandler(string userName)
             {
-                string _userName = userName;
-                if (!string.IsNullOrWhiteSpace(_userName) && _userName.Length >= 4 && _userName.Length <= 16)
-                    {
-                        return true;
-                    }
-                InvalidInputMessage();
-                return false;
+                return !string.IsNullOrWhiteSpace(userName) && userName.Length >= 3 && userName.Length <= 16;
             }
         
-        static private void InvalidInputMessage()
+        static private void InvalidInputMessage(string userName)
             {
                 Console.CursorVisible = false;
                 Console.Clear();
-                Console.WriteLine("Invalid input. Please enter a string between 4 and 16 characters long.");
+                Console.WriteLine($"{userName} is an invalid Username. It must be between 3 and 16 characters long.");
                 Console.WriteLine("<Press Any Key>");
                 Console.ReadKey();
                 Console.CursorVisible = true;
