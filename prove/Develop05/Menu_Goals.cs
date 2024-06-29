@@ -64,8 +64,9 @@ public class Menu_Goals
                             //DebugUtility.Debug("Simple Goal Created");
                             Goal simpleGoal = new Goal();
                             string newSimpleGoal = simpleGoal.SetGoal(_userName);
+                            
                             Console.Clear();
-                            DebugUtility.Debug(newSimpleGoal);
+                            //DebugUtility.Debug(newSimpleGoal);
                             break;                
                         case 2:
                             Console.Clear();

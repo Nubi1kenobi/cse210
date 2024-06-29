@@ -9,6 +9,7 @@ public class Goal
         private string _goalDescription;
         private bool _isComplete = false;
         private bool _isPermanant = false;
+        protected bool[] _goalType = {true, false, false}; // Simple Goal = _goalType[0], Eternal Goal = _goalType[1], Checklist Goal = _goalType[2]
         protected string _serializedOutput;
         
         public Goal()
@@ -17,13 +18,15 @@ public class Goal
                 _goalDescription = "";
                 _goalValue = 0;
                 _serializedOutput = "";
+                
             }
         private string GetGoal()
             {
+                
                 return _serializedOutput;
             }
+        //public string SetGoal(string userName)
         public string SetGoal(string userName)
-        //public void SetGoal(string userName)
             {
                 string _userName = userName;
                 Console.Clear();
@@ -35,12 +38,13 @@ public class Goal
                 Console.Clear();
                 Console.Write($"{userName}, what is the amount of points associated with this goal? ");
                 _goalValue = InputHandler();
-                //_serializedOutput = Serialize(_userName, _goalName, _goalDescription, _goalValue, _isComplete, _isPermanant);
-                return Serialize(_userName, _goalName, _goalDescription, _goalValue, _isComplete, _isPermanant);
+                return Serialize(_userName, _goalType[0], _goalType[1], _goalType[2], _goalName, _goalDescription, _goalValue, _isComplete, _isPermanant );
             }
-        private string Serialize(string userName, string goalName, string goalDescription, int goalValue, bool isComplete, bool isPermanant)
+        private string Serialize(string userName, bool simpleGoal, bool eternalGoal, bool checklistGoal, string goalName, string goalDescription, int goalValue, bool isComplete, bool isPermanant)
             {
-                return $"{userName}-|-{goalName}-|-{goalDescription}-|-{goalValue}-|-{isComplete}-|-{isPermanant}";
+                string serializedData = $"{userName}-|-{simpleGoal}-|-{eternalGoal}-|-{checklistGoal}-|-{goalName}-|-{goalDescription}-|-{goalValue}-|-{isComplete}-|-{isPermanant}";
+
+                return $"{userName}-|-{simpleGoal}-|-{eternalGoal}-|-{checklistGoal}-|-{goalName}-|-{goalDescription}-|-{goalValue}-|-{isComplete}-|-{isPermanant}";
             }
 
             private int InputHandler()

@@ -67,6 +67,9 @@ public class Menu_Main
                             Console.Clear();
                             Menu_Goals goalsMenu = new Menu_Goals();
                             goalsMenu.Display(userName);
+                            Goal simpleGoal = new Goal();
+                            string newGoal = simpleGoal.SetGoal(_userName);
+                            //do list thing here
                             break;
                         case 2:
                             Console.Clear();
