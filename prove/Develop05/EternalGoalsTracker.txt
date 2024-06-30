@@ -1,14 +1,14 @@
 Bryan-|-simple-|-Project Completion-|-Finishing this project on time.-|-1000-|-False-|-False
-Bryan-|-simple-|-File Utilities-|-Fixing the Save/Load features of the project.-|-100-|-False-|-False
-Bryan-|-simple-|-Display Goals Feature-|-Fixing the goals display, it broke for some reason.-|-100-|-False-|-False
+Bryan-|-simple-|-File Utilities-|-Fixing the Save/Load features of the project.-|-100-|-True-|-False
+Bryan-|-simple-|-Display Goals Feature-|-Fixing the goals display, it broke for some reason.-|-100-|-True-|-False
 Joe Momma-|-simple-|-Something Really Dumb-|-Wouldn't you like to know?-|-1500-|-False-|-False
-Joe Momma-|-simple-|-Something Else-|-This is dumb too.-|-100-|-False-|-False
-Bryan-|-simple-|-Another Item-|-Fixing something else.-|-100-|-False-|-False
-Bryan-|-simple-|-One More Thing-|-Heck, I do not know...-|-10-|-False-|-False
+Joe Momma-|-simple-|-Something Else-|-This is dumb too.-|-100-|-True-|-False
+Bryan-|-simple-|-Another Item-|-Fixing something else.-|-100-|-True-|-False
+Bryan-|-simple-|-One More Thing-|-Heck, I do not know...-|-10-|-True-|-False
 Joe Momma-|-simple-|-Something Really Dumb-|-Wouldn't you like to know?-|-1500-|-False-|-False
 Joe Momma-|-simple-|-Something Else-|-This is dumb too.-|-100-|-False-|-False
 Joe Momma-|-simple-|-One more thing-|-Just something stupid.-|-1500-|-False-|-False
 Bryan-|-simple-|-123-|-456-|-789-|-False-|-False
 Bryan-|-simple-|-Something-|-Fixing Something-|-100-|-False-|-False
-Bryan-|-simple-|-Next Steps-|-Add points calculation, then Leader Board, then the other goal types.-|-10000-|-False-|-False
+Bryan-|-simple-|-Next Steps-|-Add points calculation, then Leader Board, then the other goal types.-|-10000-|-True-|-False
 Bryan-|-simple-|-Add new mode-|-Add a "God Mode" feature, just because I can.-|-1000000-|-False-|-False
