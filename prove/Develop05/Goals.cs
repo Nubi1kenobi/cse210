@@ -1,5 +1,5 @@
 using System;
-using System.IO;
+
 
 public class Goal
 {
@@ -11,6 +11,7 @@ public class Goal
     private string _goalDescription;
     private bool _isComplete = false;
     protected bool _isPermanant = false;
+    private int _currentScore;
     protected string _serializedOutput;
     
     public Goal()
@@ -21,6 +22,7 @@ public class Goal
         _goalName = "";
         _goalDescription = "";
         _goalValue = 0;
+        _currentScore = 0;
         _serializedOutput = "";                
     }
     public string GetGoal()
@@ -70,6 +72,10 @@ public class Goal
             _goalDescription = _segments[3];
             _goalValue = int.Parse(_segments[4]);
             _isComplete = bool.Parse(_segments[5]);
+            if (_isComplete)
+            {
+                _currentScore = _currentScore + _goalValue;
+            }
             _isPermanant = bool.Parse(_segments[6]);
         }
         if (_isComplete)

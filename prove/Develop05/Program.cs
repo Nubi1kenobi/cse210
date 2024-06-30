@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 class Program
     {       
@@ -7,11 +8,13 @@ class Program
                 List<string> allGoals = new List<string>();
                 Console.WriteLine("Hello Develop05 World!");   
                 //RunWelcome();
-                string userName = Login();
-                RunProgram(userName, allGoals);        
+                User newUser = new User();
+                newUser.Login();
+                string userName = newUser.GetUser();
+                RunProgram(userName, allGoals, newUser);        
             }
         
-        static public void RunProgram(string userName, List<string> allGoals)
+        static public void RunProgram(string userName, List<string> allGoals, User newUser)
             {
                 string _userName = userName;
                 while (true)
@@ -21,24 +24,7 @@ class Program
                         Console.Clear();
                     }
             }
-        
-        static public string Login()
-            {
-                
-
-                while (true)
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Welcome to your Eternal Goals!!!!!");
-                        Console.Write("Please Enter your username: ");
-                        string userName = Console.ReadLine();
-                        if (InputHandler(userName))
-                            {
-                                return userName;
-                            }
-                        InvalidInputMessage(userName);
-                    }
-            }  
+                  
         
         static public void RunWelcome()
             {
@@ -48,20 +34,7 @@ class Program
                 welcomeScreen.Animate();
             }
         
-        static private bool InputHandler(string userName)
-            {
-                return !string.IsNullOrWhiteSpace(userName) && userName.Length >= 3 && userName.Length <= 16;
-            }
         
-        static private void InvalidInputMessage(string userName)
-            {
-                Console.CursorVisible = false;
-                Console.Clear();
-                Console.WriteLine($"{userName} is an invalid Username. It must be between 3 and 16 characters long.");
-                Console.WriteLine("<Press Any Key>");
-                Console.ReadKey();
-                Console.CursorVisible = true;
-            }
         
         
 

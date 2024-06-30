@@ -30,6 +30,7 @@ public class Menu_Main
             {
                 string _userName = username;
                 Console.Clear();
+                //UserScore(_userName);
                 Console.WriteLine("MenuCommand Option:");
                 for (int i = 0; i < menuOptions.Count; i++)
                     {
