@@ -11,7 +11,6 @@ public class Goal
     private string _goalDescription;
     private bool _isComplete = false;
     protected bool _isPermanant = false;
-    private int _currentScore;
     protected string _serializedOutput;
     
     public Goal()
@@ -22,8 +21,7 @@ public class Goal
         _goalName = "";
         _goalDescription = "";
         _goalValue = 0;
-        _currentScore = 0;
-        _serializedOutput = "";                
+        _serializedOutput = "";
     }
     public string GetGoal()
     {
@@ -55,7 +53,7 @@ public class Goal
         return $"{userName}-|-{goalType}-|-{goalName}-|-{goalDescription}-|-{goalValue}-|-{isComplete}-|-{isPermanant}";
     }
 
-    public string Deserialize(string _serializedOutput)
+    public string Deserialize(string _serializedOutput, User newUser)
     {
         string _isCompleteMarker = "";
         string[] _segments = _serializedOutput.Split("-|-");
@@ -74,7 +72,7 @@ public class Goal
             _isComplete = bool.Parse(_segments[5]);
             if (_isComplete)
             {
-                _currentScore = _currentScore + _goalValue;
+                newUser.SetScoreUpdateList(int.Parse(_segments[4]));
             }
             _isPermanant = bool.Parse(_segments[6]);
         }
@@ -122,7 +120,7 @@ public class Goal
         Console.Clear();    //above and beyond, makes it cleaner.
         Console.WriteLine($"{_fileName} has been saved.");  //above and beyond, makes it cleaner.
     }
-    public void Load(List<string> allGoals, string userName)
+    public void Load(List<string> allGoals, string userName, User newUser)
     {
         string _userName = userName;
         Console.Clear();    //above and beyond, makes it cleaner.
@@ -130,7 +128,7 @@ public class Goal
         foreach (string fileLine in allFileLines)
         {
             Goal newGoal = new Goal();
-            newGoal.Deserialize(fileLine);
+            newGoal.Deserialize(fileLine, newUser);
             if (newGoal._lineUserName == _userName)
             {
                 if (_goalType == "simple")

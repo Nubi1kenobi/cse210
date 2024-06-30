@@ -13,24 +13,24 @@ public class Menu_Main
                 "Quit"
             };
 
-        public void Display(string userName, List<string> allGoals)
+        public void Display(string userName, List<string> allGoals, User newUser)
             {
                 string _userName = userName;  
                 while (true)
                     {
                         Console.Clear();
-                        DisplayMenu(_userName);
-                        int userInput = InputHandler(_userName);
-                        if (MenuFunctions(userInput, _userName, allGoals))
+                        DisplayMenu(_userName, newUser);
+                        int userInput = InputHandler(_userName, newUser);
+                        if (MenuFunctions(userInput, _userName, allGoals, newUser));
                             break;
                     }
             }
 
-        private void DisplayMenu(string username)
+        private void DisplayMenu(string username, User newUser)
             {
                 string _userName = username;
                 Console.Clear();
-                //UserScore(_userName);
+                Console.WriteLine($"Your current score is: {newUser.GetScore()}.");
                 Console.WriteLine("MenuCommand Option:");
                 for (int i = 0; i < menuOptions.Count; i++)
                     {
@@ -39,7 +39,7 @@ public class Menu_Main
                 Console.Write($"{_userName}, please select a choice from the menu: ");
             }
 
-        private int InputHandler(string userName)
+        private int InputHandler(string userName, User newUser)
             {
                 string _username = userName;  
                 while (true)
@@ -47,7 +47,7 @@ public class Menu_Main
                         if (int.TryParse(Console.ReadLine(), out int userInput) && userInput >= 1 && userInput <= menuOptions.Count)
                             return userInput;
                         InvalidInputMessage();
-                        DisplayMenu(_username);
+                        DisplayMenu(_username, newUser);
                     }
             }
 
@@ -59,7 +59,7 @@ public class Menu_Main
                 Console.ReadKey();
             }
 
-        private bool MenuFunctions(int userInput, string userName, List<string> allGoals)
+        private bool MenuFunctions(int userInput, string userName, List<string> allGoals, User newUser)
             {
                 string _userName = userName;
                 switch (userInput)
@@ -76,7 +76,7 @@ public class Menu_Main
                             foreach (string myListOfGoals in allGoals)
                             {
                                 Goal goal = new Goal();
-                                Console.WriteLine($"{i + 1}. {goal.Deserialize(myListOfGoals)}");
+                                Console.WriteLine($"{i + 1}. {goal.Deserialize(myListOfGoals, newUser)}");
                                 i++;
                             }
                             PressAnyKey();
@@ -91,7 +91,8 @@ public class Menu_Main
                             Console.Clear();
                             allGoals.Clear();
                             Goal loadingGoals = new Goal();
-                            loadingGoals.Load(allGoals, userName);
+                            loadingGoals.Load(allGoals, userName, newUser);
+
                             PressAnyKey();
                             break;
                         case 5:

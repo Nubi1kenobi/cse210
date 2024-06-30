@@ -3,6 +3,7 @@ using System.Dynamic;
 
 public class User
 {  
+    private List<int> scoreUpdate = new List<int>();
     private string userName;
     private int score;
     public User()
@@ -30,9 +31,29 @@ public class User
                 InvalidInputMessage(userName);
             }
     }
-    public int CalculateScore()
+    public List<int> GetScoreUpdateList()
     {
-        return 1500;
+        return scoreUpdate;
+    }
+
+    public void SetScoreUpdateList(int newScore)
+    {
+        scoreUpdate.Add(newScore);
+    }
+
+    public int GetScore()
+    {
+        UpdateScore();
+        return score;
+    }
+    public void UpdateScore()
+    {   
+        foreach(int newScore in scoreUpdate)
+        {
+            score = score + newScore;
+            Console.WriteLine($"Score: {score}, NewScore: {newScore}");
+        }    
+        //scoreUpdate.Add(newScore);
     }
     static private bool InputHandler(string userName)
             {

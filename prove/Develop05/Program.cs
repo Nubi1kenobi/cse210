@@ -20,7 +20,7 @@ class Program
                 while (true)
                     {   
                         Menu_Main mainMenu = new Menu_Main();
-                        mainMenu.Display(_userName, allGoals);
+                        mainMenu.Display(_userName, allGoals, newUser);
                         Console.Clear();
                     }
             }
