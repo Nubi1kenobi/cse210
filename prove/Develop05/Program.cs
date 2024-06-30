@@ -4,19 +4,20 @@ class Program
     {       
         static void Main(string[] args)
             {
+                List<string> allGoals = new List<string>();
                 Console.WriteLine("Hello Develop05 World!");   
-                RunWelcome();
+                //RunWelcome();
                 string userName = Login();
-                RunProgram(userName);        
+                RunProgram(userName, allGoals);        
             }
         
-        static public void RunProgram(string userName)
+        static public void RunProgram(string userName, List<string> allGoals)
             {
                 string _userName = userName;
                 while (true)
                     {   
                         Menu_Main mainMenu = new Menu_Main();
-                        mainMenu.Display(_userName);
+                        mainMenu.Display(_userName, allGoals);
                         Console.Clear();
                     }
             }

@@ -13,7 +13,7 @@ public class Menu_Main
                 "Quit"
             };
 
-        public void Display(string userName)
+        public void Display(string userName, List<string> allGoals)
             {
                 string _userName = userName;  
                 while (true)
@@ -21,7 +21,7 @@ public class Menu_Main
                         Console.Clear();
                         DisplayMenu(_userName);
                         int userInput = InputHandler(_userName);
-                        if (MenuFunctions(userInput, _userName))
+                        if (MenuFunctions(userInput, _userName, allGoals))
                             break;
                     }
             }
@@ -58,7 +58,7 @@ public class Menu_Main
                 Console.ReadKey();
             }
 
-        private bool MenuFunctions(int userInput, string userName)
+        private bool MenuFunctions(int userInput, string userName, List<string> allGoals)
             {
                 string _userName = userName;
                 switch (userInput)
@@ -66,26 +66,37 @@ public class Menu_Main
                         case 1:
                             Console.Clear();
                             Menu_Goals goalsMenu = new Menu_Goals();
-                            goalsMenu.Display(userName);
-                            Goal simpleGoal = new Goal();
-                            string newGoal = simpleGoal.SetGoal(_userName);
-                            //do list thing here
+                            goalsMenu.Display(userName, allGoals);
                             break;
                         case 2:
-                            Console.Clear();
-                            DebugUtility.Debug("Listed Goals");
+                            Console.Clear();    //above and beyond, makes it cleaner.
+                            Console.WriteLine("The goals are: ");
+                            int i = 0;
+                            foreach (string myListOfGoals in allGoals)
+                            {
+                                Goal goal = new Goal();
+                                Console.WriteLine($"{i + 1}. {goal.Deserialize(myListOfGoals)}");
+                                i++;
+                            }
+                            PressAnyKey();
                             break;
                         case 3:
                             Console.Clear();
-                            DebugUtility.Debug("Saved Goals");
+                            Goal savingGoals = new Goal();
+                            savingGoals.Save(allGoals);
+                            PressAnyKey();
                             break;
                         case 4:
                             Console.Clear();
-                            DebugUtility.Debug("Loaded Goals");
+                            allGoals.Clear();
+                            Goal loadingGoals = new Goal();
+                            loadingGoals.Load(allGoals, userName);
+                            PressAnyKey();
                             break;
                         case 5:
                             Console.Clear();
                             DebugUtility.Debug("Recorded an Event");
+                            PressAnyKey();
                             break;
                         case 6:
                             GoodByeAnimation goodBye = new GoodByeAnimation(350, 100, 1, goodByeStuff);
@@ -94,4 +105,12 @@ public class Menu_Main
                     }
                 return false;
             }
+        private void PressAnyKey()
+        {
+            Console.CursorVisible = false;  //above and beyond, makes it cleaner.
+            Console.WriteLine("<Press Any Key>");   //above and beyond, makes it cleaner.
+            Console.ReadKey();
+            Console.Clear();    //above and beyond, makes it cleaner.
+            Console.CursorVisible = true;  //above and beyond, makes it cleaner.
+        }
 }
