@@ -7,8 +7,8 @@ public class Menu_Main
             {
                 "Create New Goal",
                 "List Goals",
-                "Save Goals",
-                "Load Goals",
+                "Save Goals ***This feature is disabled because 'Auto Save' is ON.",
+                "Load Goals ***This feature is disabled because 'Auto Load' is ON.",
                 "Record Event",
                 "Quit"
             };
@@ -28,15 +28,17 @@ public class Menu_Main
 
         private void DisplayMenu(string username, User newUser)
             {
-                string _userName = username;
                 Console.Clear();
-                Console.WriteLine($"Your current score is: {newUser.GetScore()}.");
+                string _userName = username;
+                int _score = newUser.GetScore();    //writing the score to a var so I can format it
+                string formattedScore = _score.ToString("N0"); //formatting of the score
+                Console.WriteLine($"{_userName}, your score is: {formattedScore}.\n"); // nicely displayed formatted score
                 Console.WriteLine("MenuCommand Option:");
                 for (int i = 0; i < menuOptions.Count; i++)
                     {
                         Console.WriteLine($"{i + 1}. {menuOptions[i]}");
                     }
-                Console.Write($"{_userName}, please select a choice from the menu: ");
+                Console.Write("Please select a choice from the menu: ");
             }
 
         private int InputHandler(string userName, User newUser)
@@ -82,17 +84,9 @@ public class Menu_Main
                             PressAnyKey();
                             break;
                         case 3:
-                            Console.Clear();
-                            Goal savingGoals = new Goal();
-                            savingGoals.Save(allGoals);
                             PressAnyKey();
                             break;
                         case 4:
-                            Console.Clear();
-                            allGoals.Clear();
-                            Goal loadingGoals = new Goal();
-                            loadingGoals.Load(allGoals, userName, newUser);
-
                             PressAnyKey();
                             break;
                         case 5:
@@ -101,6 +95,7 @@ public class Menu_Main
                             PressAnyKey();
                             break;
                         case 6:
+                            Save(allGoals);
                             GoodByeAnimation goodBye = new GoodByeAnimation(350, 100, 1, goodByeStuff);
                             goodBye.Animate();
                             return true;
@@ -114,5 +109,27 @@ public class Menu_Main
             Console.ReadKey();
             Console.Clear();    //above and beyond, makes it cleaner.
             Console.CursorVisible = true;  //above and beyond, makes it cleaner.
+        }
+
+        public void AutoLoad(List<string> allGoals, string userName, User newUser)
+        {
+            Load(allGoals, userName, newUser);
+        }
+
+        private void Save(List<string> allGoals)
+        {
+            Console.Clear();
+            Goal savingGoals = new Goal();
+            savingGoals.Save(allGoals);
+            PressAnyKey();
+        }
+
+        private void Load(List<string> allGoals, string userName, User newUser)
+        {
+            Console.Clear();
+            allGoals.Clear();
+            Goal loadingGoals = new Goal();
+            loadingGoals.Load(allGoals, userName, newUser);
+            PressAnyKey();
         }
 }

@@ -39,6 +39,7 @@ public class GoodByeAnimation
                     }
                 Console.CursorVisible = true;
                 Console.WriteLine("\n\n\n\n\n\n\n\n\n\n");
+                Console.Write("Thank you for playing, see you next time!");
                 Environment.Exit(0);
             }
     }

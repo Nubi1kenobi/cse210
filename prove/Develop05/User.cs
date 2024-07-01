@@ -4,6 +4,7 @@ using System.Dynamic;
 public class User
 {  
     private List<int> scoreUpdate = new List<int>();
+    
     private string userName;
     private int score;
     public User()
@@ -51,9 +52,7 @@ public class User
         foreach(int newScore in scoreUpdate)
         {
             score = score + newScore;
-            Console.WriteLine($"Score: {score}, NewScore: {newScore}");
         }    
-        //scoreUpdate.Add(newScore);
     }
     static private bool InputHandler(string userName)
             {
