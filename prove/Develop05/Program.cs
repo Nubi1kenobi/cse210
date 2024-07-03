@@ -6,21 +6,20 @@ class Program
     static void Main(string[] args)
     {
         RunWelcome();
-        List<string> allGoals = new List<string>();
         Console.WriteLine("Hello Develop05 World!");
         User newUser = new User();
-        newUser.Login();
-        string userName = newUser.GetUser();
-        RunProgram(userName, allGoals, newUser);
+        newUser.Login(newUser);
+        newUser.Load(newUser);
+        RunProgram(newUser);
     }
 
-    static void RunProgram(string userName, List<string> allGoals, User newUser)
+    static void RunProgram(User newUser)
     {
         while (true)
         {
             Menu_Main mainMenu = new Menu_Main();
-            mainMenu.AutoLoad(allGoals, userName, newUser);
-            mainMenu.Display(userName, allGoals, newUser);
+            //mainMenu.AutoLoad(newUser);
+            mainMenu.Display(newUser);
             Console.Clear();
         }
     }

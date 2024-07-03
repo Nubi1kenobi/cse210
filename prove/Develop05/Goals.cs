@@ -4,7 +4,6 @@ using System.IO;
 
 public class Goal
 {
-    private string _fileName;
     private string _lineUserName;
     private string _goalType;
     private string _goalName;
@@ -16,7 +15,6 @@ public class Goal
 
     public Goal()
     {
-        _fileName = "EternalGoalsTracker.txt";
         _lineUserName = "";
         _goalType = "simple";
         _goalName = "";
@@ -44,7 +42,7 @@ public class Goal
         }
         else
         {            
-            _lineUserName = segments[0];
+            newUser.SetFileLineUsername(segments[0]);
             _goalType = segments[1];
             _goalName = segments[2];
             _goalDescription = segments[3];
@@ -92,49 +90,7 @@ public class Goal
         Console.ReadKey();
     }
 
-    public void Save(List<string> allGoals)
-    {
-        Console.Clear();
-        HashSet<string> savedGoals = new HashSet<string>(File.ReadAllLines(_fileName));
-        using (StreamWriter outputFile = new StreamWriter(_fileName, true))
-        {                     
-            foreach (string goalLine in allGoals)
-            {
-                if (!savedGoals.Contains(goalLine))
-                {
-                    outputFile.WriteLine(goalLine);
-                    savedGoals.Add(goalLine);
-                }
-            }
-        }
-        Console.Clear();
-        Console.WriteLine($"{_fileName} has been saved.");
-    }
-
-    public void Load(List<string> allGoals, string userName, User newUser)
-    {
-        Console.Clear();
-        string[] allFileLines = File.ReadAllLines(_fileName);
-        foreach (string fileLine in allFileLines)
-        {
-            Goal newGoal = new Goal();
-            newGoal.Deserialize(fileLine, newUser);
-            if (newGoal._lineUserName == userName)
-            {
-                if (_goalType == "simple")
-                {
-                    allGoals.Add(fileLine);
-                }
-                else
-                {
-                    DebugUtility.Debug("Error at Goal.Load()");
-                }
-            }
-        }
-        Console.CursorVisible = false;
-        Console.Clear();
-        Console.WriteLine($"{_fileName} has been loaded.");
-    }
+   
 
     private string Serialize(string userName, string goalType, string goalName, string goalDescription, int goalValue, bool isComplete, bool isPermanent)
     {

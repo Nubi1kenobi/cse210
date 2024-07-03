@@ -10,17 +10,17 @@ public class Menu_Goals
         "Checklist Goal",
     };
 
-    public void Display(string userName, List<string> allGoals)
+    public void Display(User newUser)
     {
         while (true)
         {
-            DisplayMenu(userName);
-            int userInput = InputHandler(userName);
-            if (MenuFunctions(userInput, userName, allGoals)) break;
+            DisplayMenu(newUser);
+            int userInput = InputHandler(newUser);
+            if (MenuFunctions(userInput, newUser)) break;
         }
     }
 
-    private void DisplayMenu(string userName)
+    private void DisplayMenu(User newUser)
     {
         Console.Clear();
         Console.WriteLine("The types of goals are:");
@@ -28,17 +28,17 @@ public class Menu_Goals
         {
             Console.WriteLine($"{i + 1}. {menuOptions[i]}");
         }
-        Console.Write($"{userName}, which type of goal would you like to create? ");
+        Console.Write($"{newUser.GetUser()}, which type of goal would you like to create? ");
     }
 
-    private int InputHandler(string userName)
+    private int InputHandler(User newUser)
     {
         while (true)
         {
             if (int.TryParse(Console.ReadLine(), out int userInput) && userInput >= 1 && userInput <= menuOptions.Count)
-                return userInput;
+            return userInput;
             InvalidInputMessage();
-            DisplayMenu(userName);
+            DisplayMenu(newUser);
         }
     }
 
@@ -49,12 +49,12 @@ public class Menu_Goals
         PressAnyKey();
     }
 
-    private bool MenuFunctions(int userInput, string userName, List<string> allGoals)
+    private bool MenuFunctions(int userInput, User newUser)
     {
         switch (userInput)
         {
             case 1:
-                CreateGoal(userName, allGoals);
+                CreateGoal(newUser.GetUser(), newUser.GetUserGoals());
                 break;
             case 2:
                 DebugUtility.Debug("Eternal Goal Created");
